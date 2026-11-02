@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; width: 280px; font: 13px/1.4 system-ui, -apple-system, Segoe UI, sans-serif; color: #e8e8ec; background: #16161c; }
+  .wrap { padding: 14px 16px 12px; }
+  h1 { font-size: 14px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  h1 img { width: 20px; height: 20px; }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 7px 0; border-top: 1px solid #26262e; }
+  .row:first-of-type { border-top: 0; }
+  .row label { flex: 1; }
+  .hint { color: #8b8b96; font-size: 11px; margin-top: 2px; }
+  input[type=number], select { width: 84px; background: #22222a; color: #fff; border: 1px solid #34343e; border-radius: 6px; padding: 4px 6px; font: inherit; }
+  .switch { position: relative; width: 38px; height: 22px; flex: none; }
+  .switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+  .switch span { position: absolute; inset: 0; background: #3a3a46; border-radius: 22px; transition: .15s; cursor: pointer; }
+  .switch span::before { content: ""; position: absolute; width: 16px; height: 16px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .15s; }
+  .switch input:checked + span { background: #ff3d7f; }
+  .switch input:checked + span::before { transform: translateX(16px); }
+  .foot { color: #8b8b96; font-size: 11px; margin-top: 10px; border-top: 1px solid #26262e; padding-top: 8px; }
+  kbd { background: #26262e; border-radius: 4px; padding: 1px 5px; font: 11px ui-monospace, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1><img src="icons/32.png" alt=""> GIF Maker</h1>
+
+  <div class="row">
+    <label for="enabled">Show GIF button on videos<div class="hint">Appears when you hover a video (like IDM)</div></label>
+    <div class="switch"><input type="checkbox" id="enabled"><span></span></div>
+  </div>
+  <div class="row">
+    <label for="fps">Default FPS</label>
+    <input type="number" id="fps" min="1" max="50" step="1">
+  </div>
+  <div class="row">
+    <label for="width">Default size (width)</label>
+    <select id="width">
+      <option value="160">160 px</option>
+      <option value="240">240 px</option>
+      <option value="320">320 px</option>
+      <option value="480">480 px</option>
+      <option value="640">640 px</option>
+      <option value="0">Original</option>
+    </select>
+  </div>
+  <div class="row">
+    <label for="dither">Dithering<div class="hint">Smoother gradients, bigger file</div></label>
+    <div class="switch"><input type="checkbox" id="dither"><span></span></div>
+  </div>
+  <div class="row">
+    <label for="optimize">Smaller files<div class="hint">Only store pixels that change</div></label>
+    <div class="switch"><input type="checkbox" id="optimize"><span></span></div>
+  </div>
+  <div class="row">
+    <label for="saveAs">Ask where to save</label>
+    <div class="switch"><input type="checkbox" id="saveAs"><span></span></div>
+  </div>
+
+  <div class="foot">Toggle the button with <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd>. The right-click menu on a video always works, even when the button is hidden.</div>
+</div>
+<script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>GIF Maker</title>
+<link rel="stylesheet" href="editor.css">
+</head>
+<body>
+<div class="app" id="app">
+  <header class="bar" id="dragbar">
+    <img class="logo" src="icons/32.png" alt="">
+    <span class="title">GIF Maker</span>
+    <span class="sub" id="videoInfo"></span>
+    <button class="icon" id="closeBtn" title="Close (Esc)" aria-label="Close">&#x2715;</button>
+  </header>
+
+  <section class="preview" id="preview">
+    <canvas id="frameCanvas"></canvas>
+    <img id="resultImg" alt="GIF preview" hidden>
+    <div class="badge" id="previewBadge">frame</div>
+    <div class="overlay" id="previewMsg" hidden></div>
+  </section>
+
+  <section class="timeline">
+    <div class="track" id="track">
+      <div class="thumbs" id="thumbs"></div>
+      <div class="dim" id="dimL"></div>
+      <div class="dim" id="dimR"></div>
+      <div class="range" id="range"></div>
+      <div class="grip" id="grip" title="Drag to move the whole range"></div>
+      <div class="handle" id="hStart" title="Start"></div>
+      <div class="handle" id="hEnd" title="End"></div>
+      <div class="playhead" id="playhead"></div>
+    </div>
+    <div class="times">
+      <label>Start <input type="number" id="startIn" step="0.01" min="0"><span>s</span></label>
+      <label>End <input type="number" id="endIn" step="0.01" min="0"><span>s</span></label>
+      <span class="info" id="rangeInfo"></span>
+      <label class="loop"><input type="checkbox" id="loopPage"> Loop range on page</label>
+    </div>
+  </section>
+
+  <section class="controls">
+    <label>FPS <input type="number" id="fps" min="1" max="50" step="1"></label>
+    <label>Size
+      <select id="sizeSel">
+        <option value="160">160 px</option>
+        <option value="240">240 px</option>
+        <option value="320">320 px</option>
+        <option value="480">480 px</option>
+        <option value="640">640 px</option>
+        <option value="0">Original</option>
+        <option value="custom">Custom…</option>
+      </select>
+      <input type="number" id="widthIn" min="16" step="2" hidden>
+      <span class="dims" id="dims"></span>
+    </label>
+    <label class="chk"><input type="checkbox" id="dither"> Dither</label>
+    <label class="chk" title="Only store pixels that change between frames"><input type="checkbox" id="optimize"> Smaller file</label>
+  </section>
+
+  <section class="actions">
+    <button id="playBtn" title="Play / pause the selected range">&#9654; Play</button>
+    <button class="primary" id="makeBtn">Make GIF</button>
+    <button id="saveBtn" disabled>Save GIF</button>
+    <button id="cancelBtn" hidden>Cancel</button>
+    <span class="status" id="status"></span>
+  </section>
+  <div class="progress" id="progress"><div class="fill" id="progressFill"></div></div>
+</div>
+<script src="editor.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "GIF Maker for Videos",
+  "version": "1.0.0",
+  "description": "Hover any video, hit GIF, pick a start/end range, FPS and size, preview it, and save it as a GIF.",
+  "permissions": ["storage", "downloads", "contextMenus"],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "GIF Maker",
+    "default_icon": { "16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png", "128": "icons/128.png" }
+  },
+  "icons": { "16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png", "128": "icons/128.png" },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["editor.html", "editor.css", "editor.js", "gif-worker.js", "icons/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "commands": {
+    "toggle-overlay": {
+      "suggested_key": { "default": "Alt+Shift+G" },
+      "description": "Show or hide the GIF button on videos"
+    }
+  }
+}
